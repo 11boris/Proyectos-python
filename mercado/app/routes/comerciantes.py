@@ -5,7 +5,14 @@ bp = Blueprint('comerciantes', __name__, url_prefix='/comerciantes')
 
 @bp.route('/')
 def index():
-    lista = Comerciante.query.all()
+    q = request.args.get('buscar', '')
+    if q:
+        lista = Comerciante.query.filter(
+            (Comerciante.nombre.ilike(f'%{q}%')) |
+            (Comerciante.cedula.ilike(f'%{q}%'))
+        ).all()
+    else:
+        lista = Comerciante.query.all()
     return render_template('comerciantes/index.html', comerciantes=lista)
 
 @bp.route('/nuevo', methods=['GET', 'POST'])
@@ -23,5 +30,26 @@ def nuevo():
         db.session.add(nuevo)
         db.session.commit()
         return redirect(url_for('comerciantes.index'))
-    return render_template('comerciantes/form.html')
+    return render_template('comerciantes/form.html', comerciante=None)
 
+@bp.route('/editar/<int:id>', methods=['GET', 'POST'])
+def editar(id):
+    comerciante = Comerciante.query.get_or_404(id)
+    if request.method == 'POST':
+        comerciante.nombre = request.form['nombre']
+        comerciante.apellido = request.form['apellido']
+        comerciante.cedula = request.form['cedula']
+        comerciante.direccion = request.form['direccion']
+        comerciante.telefono = request.form['telefono']
+        comerciante.rubro = request.form['rubro']
+        comerciante.puesto = request.form['puesto']
+        db.session.commit()
+        return redirect(url_for('comerciantes.index'))
+    return render_template('comerciantes/form.html', comerciante=comerciante)
+
+@bp.route('/eliminar/<int:id>')
+def eliminar(id):
+    comerciante = Comerciante.query.get_or_404(id)
+    db.session.delete(comerciante)
+    db.session.commit()
+    return redirect(url_for('comerciantes.index'))
