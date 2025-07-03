@@ -1,0 +1,9 @@
+<h2>Lista de Comerciantes</h2>
+<a href="{{ url_for('comerciantes.nuevo') }}">Nuevo Comerciante</a>
+<ul>
+  {% for c in comerciantes %}
+  
+  <li>{{ c.nombre }} - {{c.apellido }} - {{ c.rubro }} - Puesto {{ c.puesto }}</li>
+  
+    {% endfor %}
+</ul>
