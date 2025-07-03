@@ -42,9 +42,20 @@
         <td>{{ c.telefono }}</td>
         <td>{{ c.direccion }}</td>
         <td class="text-center">
-          <a href="{{ url_for('comerciantes.editar', id=c.id) }}" class="btn btn-sm btn-warning me-1">Editar</a>
-          <a href="{{ url_for('comerciantes.eliminar', id=c.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este comerciante?')">Eliminar</a>
-        </td>
+         <div class="d-flex gap-1 justify-content-center">
+          <a href="{{ url_for('comerciantes.editar', id=c.id) }}" 
+             class="btn btn-sm btn-warning w-100 d-flex align-items-center justify-content-center"
+             style="min-width: 90px;">
+      ✏️ Editar
+    </a>
+    <a href="{{ url_for('comerciantes.eliminar', id=c.id) }}" 
+       class="btn btn-sm btn-danger w-100 d-flex align-items-center justify-content-center"
+       style="min-width: 90px;"
+       onclick="return confirm('¿Estás seguro de eliminar este comerciante?')">
+      🗑️ Eliminar
+    </a>
+  </div>
+</td>
       </tr>
       {% endfor %}
     </tbody>
