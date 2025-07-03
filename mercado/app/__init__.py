@@ -9,7 +9,8 @@ def create_app():
 
     db.init_app(app)
 
-    from .routes import comerciantes
+    from .routes import comerciantes,mantenimiento,reportes
     app.register_blueprint(comerciantes.bp)
-
+    app.register_blueprint(mantenimiento.bp)
+    app.register_blueprint(reportes.bp)
     return app

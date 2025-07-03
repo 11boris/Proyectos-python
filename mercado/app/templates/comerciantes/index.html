@@ -1,9 +1,39 @@
-<h2>Lista de Comerciantes</h2>
-<a href="{{ url_for('comerciantes.nuevo') }}">Nuevo Comerciante</a>
-<ul>
-  {% for c in comerciantes %}
-  
-  <li>{{ c.nombre }} - {{c.apellido }} - {{ c.rubro }} - Puesto {{ c.puesto }}</li>
-  
-    {% endfor %}
-</ul>
+{% extends 'base.html' %}
+
+{% block title %}Lista de Comerciantes{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Lista de Comerciantes</h2>
+    <a href="{{ url_for('comerciantes.nuevo') }}" class="btn btn-success">+ Nuevo Comerciante</a>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Cédula</th>
+        <th>Rubro</th>
+        <th>Puesto</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in comerciantes %}
+      <tr>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.apellido }}</td>
+        <td>{{ c.cedula }}</td>
+        <td>{{ c.rubro }}</td>
+        <td>{{ c.puesto }}</td>
+        <td>{{ c.telefono }}</td>
+        <td>{{ c.direccion }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
