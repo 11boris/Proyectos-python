@@ -24,8 +24,7 @@ def nuevo():
             cedula=request.form['cedula'],
             direccion=request.form['direccion'],
             telefono=request.form['telefono'],
-            rubro=request.form['rubro'],
-            puesto=request.form['puesto']
+            
         )
         db.session.add(nuevo)
         db.session.commit()
@@ -41,8 +40,6 @@ def editar(id):
         comerciante.cedula = request.form['cedula']
         comerciante.direccion = request.form['direccion']
         comerciante.telefono = request.form['telefono']
-        comerciante.rubro = request.form['rubro']
-        comerciante.puesto = request.form['puesto']
         db.session.commit()
         return redirect(url_for('comerciantes.index'))
     return render_template('comerciantes/form.html', comerciante=comerciante)

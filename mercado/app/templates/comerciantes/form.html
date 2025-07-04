@@ -33,16 +33,6 @@
       <input type="text" id="telefono" name="telefono" class="form-control"
              value="{{ comerciante.telefono if comerciante else '' }}">
     </div>
-    <div class="mb-3">
-      <label for="rubro" class="form-label">Rubro</label>
-      <input type="text" id="rubro" name="rubro" class="form-control" required 
-             value="{{ comerciante.rubro if comerciante else '' }}">
-    </div>
-    <div class="mb-3">
-      <label for="puesto" class="form-label">Puesto</label>
-      <input type="text" id="puesto" name="puesto" class="form-control" required 
-             value="{{ comerciante.puesto if comerciante else '' }}">
-    </div>
     <button type="submit" class="btn btn-primary">
       {{ 'Actualizar' if comerciante else 'Guardar' }}
     </button>

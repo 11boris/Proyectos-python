@@ -16,7 +16,7 @@
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark text-white min-vh-100">
         <div class="d-flex flex-column align-items-sm-start px-3 pt-3">
           <a href="{{ url_for('inicio') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4">Mercado</span>
+            <span class="fs-4">Gestion Mercados</span>
           </a>
           <hr>
 
@@ -29,10 +29,10 @@
               <div class="collapse ps-3" id="submenuComerciantes">
                 <ul class="nav flex-column">
                   <li>
-                    <a href="{{ url_for('comerciantes.index') }}" class="nav-link text-white">Listado</a>
+                    <a href="{{ url_for('comerciantes.catastro') }}" class="nav-link text-white">Catastro</a>
                   </li>
                   <li>
-                    <a href="{{ url_for('comerciantes.catastro') }}" class="nav-link text-white">Catastro</a>
+                   <a href="{{ url_for('comerciantes.index') }}" class="nav-link text-white">Listado</a>
                   </li>
                 </ul>
               </div>
@@ -46,7 +46,7 @@
               <div class="collapse ps-3" id="submenuMantenimiento">
                 <ul class="nav flex-column">
                   <li>
-                    <a href="{{ url_for('mantenimiento.preventivo') }}" class="nav-link text-white">Preventivo</a>
+                    <a href="{{ url_for('mantenimiento.preventivo') }}" class="nav-link text-white">Programado</a>
                   </li>
                   <li>
                     <a href="{{ url_for('mantenimiento.ejecutado') }}" class="nav-link text-white">Ejecutado</a>
