@@ -53,3 +53,7 @@ def eliminar(id):
     db.session.delete(comerciante)
     db.session.commit()
     return redirect(url_for('comerciantes.index'))
+
+@bp.route('/catastro')
+def catastro():
+    return render_template('comerciantes/catastro.html')

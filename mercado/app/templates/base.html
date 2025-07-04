@@ -2,41 +2,75 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>{% block title %}Sistema de Mercado{% endblock %}</title>
+  <title>{% block title %}Sistema{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  
-
 </head>
 <body>
-<div class="container-fluid">
-  <div class="row flex-nowrap">
-    <!-- Sidebar -->
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark text-white min-vh-100">
-      <div class="d-flex flex-column align-items-sm-start px-3 pt-2">
-        <a href="/" class="d-flex align-items-center mb-3 text-white text-decoration-none">
-          <span class="fs-4">Gestion de plazas y mercados</span>
-        </a>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="{{ url_for('comerciantes.index') }}" class="nav-link text-white">Comerciantes</a>
-          </li>
-          <li>
-            <a href="{{ url_for('mantenimiento.index') }}" class="nav-link text-white">Mantenimiento</a>
-          </li>
-          <li>
-            <a href="{{ url_for('reportes.index') }}" class="nav-link text-white">Reportes</a>
-          </li>
-        </ul>
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <!-- Sidebar -->
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark text-white min-vh-100">
+        <div class="d-flex flex-column align-items-sm-start px-3 pt-3">
+          <a href="{{ url_for('inicio') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-4">Mercado</span>
+          </a>
+          <hr>
+
+          <ul class="nav nav-pills flex-column mb-auto w-100">
+            <!-- Comerciantes con submenú -->
+            <li class="nav-item">
+              <a class="nav-link text-white dropdown-toggle" data-bs-toggle="collapse" href="#submenuComerciantes" role="button" aria-expanded="false" aria-controls="submenuComerciantes">
+                Comerciantes
+              </a>
+              <div class="collapse ps-3" id="submenuComerciantes">
+                <ul class="nav flex-column">
+                  <li>
+                    <a href="{{ url_for('comerciantes.index') }}" class="nav-link text-white">Listado</a>
+                  </li>
+                  <li>
+                    <a href="{{ url_for('comerciantes.catastro') }}" class="nav-link text-white">Catastro</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Mantenimiento con submenú -->
+            <li class="nav-item mt-2">
+              <a class="nav-link text-white dropdown-toggle" data-bs-toggle="collapse" href="#submenuMantenimiento" role="button" aria-expanded="false" aria-controls="submenuMantenimiento">
+                Mantenimiento
+              </a>
+              <div class="collapse ps-3" id="submenuMantenimiento">
+                <ul class="nav flex-column">
+                  <li>
+                    <a href="{{ url_for('mantenimiento.preventivo') }}" class="nav-link text-white">Preventivo</a>
+                  </li>
+                  <li>
+                    <a href="{{ url_for('mantenimiento.ejecutado') }}" class="nav-link text-white">Ejecutado</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Reportes -->
+            <li class="nav-item mt-2">
+              <a href="{{ url_for('reportes.index') }}" class="nav-link text-white">Reportes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="col py-3">
+        {% block content %}{% endblock %}
       </div>
     </div>
-
-    <!-- Main content -->
-    <div class="col py-3">
-      {% block content %}{% endblock %}
-    </div>
   </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
