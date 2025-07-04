@@ -54,3 +54,15 @@ def eliminar(id):
 @bp.route('/catastro')
 def catastro():
     return render_template('comerciantes/catastro.html')
+
+@bp.route('/api/<cedula>')
+def buscar_por_cedula(cedula):
+    c = Comerciante.query.filter_by(cedula=cedula).first()
+    if c:
+        return {
+            'nombre': c.nombre,
+            'apellido': c.apellido
+        }
+    return {}, 404
+
+
