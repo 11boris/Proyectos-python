@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from app.models import Comerciante, db
 
 bp = Blueprint('comerciantes', __name__, url_prefix='/comerciantes')
@@ -23,8 +23,7 @@ def nuevo():
             apellido=request.form['apellido'],
             cedula=request.form['cedula'],
             direccion=request.form['direccion'],
-            telefono=request.form['telefono'],
-            
+            telefono=request.form['telefono']
         )
         db.session.add(nuevo)
         db.session.commit()
@@ -51,18 +50,9 @@ def eliminar(id):
     db.session.commit()
     return redirect(url_for('comerciantes.index'))
 
-@bp.route('/catastro')
-def catastro():
-    return render_template('comerciantes/catastro.html')
-
 @bp.route('/api/<cedula>')
 def buscar_por_cedula(cedula):
     c = Comerciante.query.filter_by(cedula=cedula).first()
     if c:
-        return {
-            'nombre': c.nombre,
-            'apellido': c.apellido
-        }
-    return {}, 404
-
-
+        return jsonify({'nombre': c.nombre, 'apellido': c.apellido})
+    return jsonify({}), 404

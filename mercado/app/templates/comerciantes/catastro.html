@@ -21,8 +21,9 @@
           <div class="col-md-4">
             <label for="cedula" class="form-label">Cédula</label>
             <div class="input-group">
-              <input type="text" name="cedula" id="cedula" class="form-control" required>
-              <button type="button" class="btn btn-outline-secondary" id="btn-verificar-catastro" title="Verificar catastro">
+              <input type="text" id="cedula" name="cedula" class="form-control" required>
+              <button type="button" class="btn btn-outline-secondary" id="btn-verificar-catastro"
+                title="Verificar catastro">
                 <i class="bi bi-search"></i>
               </button>
             </div>
@@ -30,12 +31,12 @@
 
           <div class="col-md-4">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" id="nombre" class="form-control" readonly>
+            <input type="text" id="nombre" name="nombre" class="form-control" readonly>
           </div>
 
           <div class="col-md-4">
             <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" id="apellido" class="form-control" readonly>
+            <input type="text" id="apellido" name="apellido" class="form-control" readonly>
           </div>
 
           <div class="col-md-4">
@@ -88,18 +89,24 @@
       <div class="card-body">
         <h5>Referencia 1</h5>
         <div class="row g-3 mb-3">
-          <div class="col-md-3"><input type="text" name="ref1_nombre" class="form-control" placeholder="Nombre"></div>
-          <div class="col-md-3"><input type="text" name="ref1_apellido" class="form-control" placeholder="Apellido"></div>
-          <div class="col-md-3"><input type="text" name="ref1_telefono" class="form-control" placeholder="Teléfono"></div>
-          <div class="col-md-3"><input type="text" name="ref1_parentesco" class="form-control" placeholder="Parentesco"></div>
+          <div class="col-md-3"><input type="text" name="ref1_nombre" class="form-control" placeholder="Nombreref1"></div>
+          <div class="col-md-3"><input type="text" name="ref1_apellido" class="form-control" placeholder="Apellidoref1">
+          </div>
+          <div class="col-md-3"><input type="text" name="ref1_telefono" class="form-control" placeholder="Teléfono">
+          </div>
+          <div class="col-md-3"><input type="text" name="ref1_parentesco" class="form-control" placeholder="Parentesco">
+          </div>
         </div>
 
         <h5>Referencia 2</h5>
         <div class="row g-3">
-          <div class="col-md-3"><input type="text" name="ref2_nombre" class="form-control" placeholder="Nombre"></div>
-          <div class="col-md-3"><input type="text" name="ref2_apellido" class="form-control" placeholder="Apellido"></div>
-          <div class="col-md-3"><input type="text" name="ref2_telefono" class="form-control" placeholder="Teléfono"></div>
-          <div class="col-md-3"><input type="text" name="ref2_parentesco" class="form-control" placeholder="Parentesco"></div>
+          <div class="col-md-3"><input type="text" name="ref2_nombre" class="form-control" placeholder="Nombreref2"></div>
+          <div class="col-md-3"><input type="text" name="ref2_apellido" class="form-control" placeholder="Apellidoref2">
+          </div>
+          <div class="col-md-3"><input type="text" name="ref2_telefono" class="form-control" placeholder="Teléfono">
+          </div>
+          <div class="col-md-3"><input type="text" name="ref2_parentesco" class="form-control" placeholder="Parentesco">
+          </div>
         </div>
       </div>
     </div>
