@@ -1,13 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for
 from app.models import Catastro, Comerciante, db
 from datetime import datetime
 
 bp = Blueprint('catastro', __name__, url_prefix='/catastro')
-
-@bp.route('/verificar/<cedula>')
-def verificar(cedula):
-    existe = Catastro.query.filter_by(cedula=cedula).first()
-    return jsonify({'catastrado': bool(existe)})
 
 @bp.route('/', methods=['GET', 'POST'])
 def registrar():
@@ -37,6 +32,11 @@ def registrar():
 
         db.session.add(nuevo)
         db.session.commit()
-        return redirect(url_for('catastro.registrar'))  # Redirige al mismo formulario vacío
+        return redirect(url_for('catastro.listar'))
 
     return render_template('comerciantes/catastro.html')
+
+@bp.route('/listar')
+def listar():
+    registros = Catastro.query.all()
+    return render_template('comerciantes/lista_catastro.html', catastros=registros)

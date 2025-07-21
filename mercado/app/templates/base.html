@@ -29,10 +29,13 @@
               <div class="collapse ps-3" id="submenuComerciantes">
                 <ul class="nav flex-column">
                   <li>
-                    <a href="{{ url_for('catastro.registrar') }}" class="nav-link text-white">Catastro</a>
+                    <a href="{{ url_for('catastro.registrar') }}" class="nav-link text-white">Registrar Catastro</a>
                   </li>
                   <li>
-                    <a href="{{ url_for('comerciantes.index') }}" class="nav-link text-white">Listado</a>
+                    <a href="{{ url_for('catastro.listar') }}" class="nav-link text-white">Ver Catastros</a>
+                  </li>
+                  <li>
+                    <a href="{{ url_for('comerciantes.index') }}" class="nav-link text-white">Comerciantes</a>
                   </li>
                 </ul>
               </div>
@@ -66,6 +69,7 @@
       <!-- Main content -->
       <div class="col py-3">
         {% block content %}{% endblock %}
+        {% block scripts %}{% endblock %}
       </div>
     </div>
   </div>

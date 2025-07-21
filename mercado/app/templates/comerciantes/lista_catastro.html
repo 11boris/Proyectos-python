@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Listado de Catastros{% endblock %}
+{% block content %}
+<h3 class="mb-3">Registros de Catastro</h3>
+<table class="table table-bordered table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Cédula</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Plaza</th>
+      <th>Puesto</th>
+      <th>Actividad</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in catastros %}
+    <tr>
+      <td>{{ c.fecha.strftime('%Y-%m-%d') }}</td>
+      <td>{{ c.cedula }}</td>
+      <td>{{ c.comerciante.nombre }}</td>
+      <td>{{ c.comerciante.apellido }}</td>
+      <td>{{ c.plaza }}</td>
+      <td>{{ c.puesto }}</td>
+      <td>{{ c.actividad }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

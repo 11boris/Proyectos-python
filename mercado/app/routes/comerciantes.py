@@ -5,25 +5,25 @@ bp = Blueprint('comerciantes', __name__, url_prefix='/comerciantes')
 
 @bp.route('/')
 def index():
-    q = request.args.get('buscar', '')
-    if q:
-        lista = Comerciante.query.filter(
-            (Comerciante.nombre.ilike(f'%{q}%')) |
-            (Comerciante.cedula.ilike(f'%{q}%'))
+    buscar = request.args.get('buscar', '')
+    if buscar:
+        comerciantes = Comerciante.query.filter(
+            (Comerciante.nombre.ilike(f'%{buscar}%')) |
+            (Comerciante.cedula.ilike(f'%{buscar}%'))
         ).all()
     else:
-        lista = Comerciante.query.all()
-    return render_template('comerciantes/index.html', comerciantes=lista)
+        comerciantes = Comerciante.query.all()
+    return render_template('comerciantes/index.html', comerciantes=comerciantes)
 
 @bp.route('/nuevo', methods=['GET', 'POST'])
 def nuevo():
     if request.method == 'POST':
         nuevo = Comerciante(
-            nombre=request.form['nombre'],
-            apellido=request.form['apellido'],
-            cedula=request.form['cedula'],
-            direccion=request.form['direccion'],
-            telefono=request.form['telefono']
+            nombre=request.form.get('nombre'),
+            apellido=request.form.get('apellido'),
+            cedula=request.form.get('cedula'),
+            direccion=request.form.get('direccion'),
+            telefono=request.form.get('telefono')
         )
         db.session.add(nuevo)
         db.session.commit()
@@ -34,11 +34,11 @@ def nuevo():
 def editar(id):
     comerciante = Comerciante.query.get_or_404(id)
     if request.method == 'POST':
-        comerciante.nombre = request.form['nombre']
-        comerciante.apellido = request.form['apellido']
-        comerciante.cedula = request.form['cedula']
-        comerciante.direccion = request.form['direccion']
-        comerciante.telefono = request.form['telefono']
+        comerciante.nombre = request.form.get('nombre')
+        comerciante.apellido = request.form.get('apellido')
+        comerciante.cedula = request.form.get('cedula')
+        comerciante.direccion = request.form.get('direccion')
+        comerciante.telefono = request.form.get('telefono')
         db.session.commit()
         return redirect(url_for('comerciantes.index'))
     return render_template('comerciantes/form.html', comerciante=comerciante)
